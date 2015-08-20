@@ -31,25 +31,29 @@ class Courses extends CI_Controller {
         $course = $this->Course->get_course_by_id($id);  //calls the get_course_by_id method
         var_dump($course);
     }
-    public function add($name, $description)
+    public function add()
     {
         $this->load->model("Course");
+        $name = $this->input->post('name');
+        $description = $this->input->post('description');
         $course_details = array(
-            "title" => $name,
+            "name" => $name,
             "description" => $description
         ); 
         $add_course = $this->Course->add_course($course_details);
         if($add_course === TRUE)
-            echo "Course is added!";
-    }
-    public function remove($id)
-    {
-    	echo "Delete $id";
+        {
+            redirect('/');
+        }
     }
     public function destroy($id)
     {
-    	$this->load->model("Course"); //loads the model
-        $course = $this->Course->delete_course_by_id($id);
+    	$this->load->model("Course");
+    	$delete_course = $this->Course->delete_course_by_id($id);
+    	if($delete_course === TRUE)
+        {
+            redirect('/');
+        }
     }
 }
 

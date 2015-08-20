@@ -10,8 +10,8 @@
 		}
 		function add_course($course)
 		{
-		 $query = "INSERT INTO courses (title, description, created_at) VALUES (?,?,?)";
-		 $values = array($course['title'], $course['description'], date("Y-m-d, H:i:s")); 
+		 $query = "INSERT INTO courses (name, description, created_at) VALUES (?,?,?)";
+		 $values = array($course['name'], $course['description'], date("Y-m-d, H:i:s")); 
 		 return $this->db->query($query, $values);
 		} 
 		function delete_course_by_id($course_id)

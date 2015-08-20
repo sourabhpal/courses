@@ -40,10 +40,10 @@
 <body>
 	<div class="container container-form">
 		<h1>Add your course below!</h1>
-		<form class="form-group" action="course/add" method="post" role="form">
+		<form class="form-group" action="courses/add" method="post" role="form">
 			<input class="form-control" type="hidden" action="action" value='add'>
-			<input class="form-control" type='text' placeholder='Course Name'>
-			<textarea class="form-control" type='text' placeholder='Course Description'></textarea>
+			<input class="form-control" type='text' placeholder='Course Name' name='name' required>
+			<textarea class="form-control" type='text' placeholder='Course Description' name='description' required></textarea>
 			<button type="submit" class="btn-primary">Add</button>
 		</form>
 	</div>
@@ -58,10 +58,14 @@
 			</thead>
 			<tbody>
 	<?php 
-		for ($i = 0; $i < count($id); $i++)
-		{
-			echo "<tr><td>{$id[$i]}</td><td>{$name[$i]}</td><td>{$description[$i]}</td><td>{$date[$i]}</td><td><a href=\"courses/remove/$i\">Remove</a></td></tr>";
-		}
+		// for ($i = 0; $i < count($id); $i++)
+		// {
+		// 	echo "<tr><td>{$id[$i]}</td><td>{$name[$i]}</td><td>{$description[$i]}</td><td>{$date[$i]}</td><td><a href=\"courses/destroy/$i\">Remove</a></td></tr>";
+		// }
+  foreach ($id as $key => $value)
+    {
+      echo "<tr><td>{$id[$key]}</td><td>{$name[$key]}</td><td>{$description[$key]}</td><td>{$date[$key]}</td><td><a href=\"courses/destroy/$value\">Remove</a></td></tr>";
+    }
 	?>
 			</tbody>
 		</table>
