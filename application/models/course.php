@@ -2,7 +2,7 @@
 	class Course extends CI_Model{
 		function get_all_courses()
 		{
-		 return $this->db->query("SELECT * FROM courses")->result_array();
+		 return $this->db->query("SELECT * FROM courses ORDER BY id DESC")->result_array();
 		}
 		function get_course_by_id($course_id)
 		{

@@ -35,18 +35,37 @@
   		td {
   			padding: 5px;
   		}
+      .alert {
+        text-align: center;
+        max-width: 500px;
+        margin: 10px auto;
+      }
   	</style>
 </head>
 <body>
+
+    <?php 
+
+        if ($this->session->userdata('error'))
+        {
+          ?><div class="alert alert-danger">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Error!</strong>
+          <?php echo $this->session->userdata('error');
+          $this->session->unset_userdata('error');
+        }
+     ?>
+  </div>
 	<div class="container container-form">
 		<h1>Add your course below!</h1>
 		<form class="form-group" action="courses/add" method="post" role="form">
 			<input class="form-control" type="hidden" action="action" value='add'>
 			<input class="form-control" type='text' placeholder='Course Name' name='name' required>
-			<textarea class="form-control" type='text' placeholder='Course Description' name='description' required></textarea>
+			<textarea class="form-control" type='text' placeholder='Course Description' name='description'></textarea>
 			<button type="submit" class="btn-primary">Add</button>
 		</form>
 	</div>
+
 	<div class="container container-table">
 		<table class="table-responsive table-striped">
 			<thead>
@@ -58,10 +77,6 @@
 			</thead>
 			<tbody>
 	<?php 
-		// for ($i = 0; $i < count($id); $i++)
-		// {
-		// 	echo "<tr><td>{$id[$i]}</td><td>{$name[$i]}</td><td>{$description[$i]}</td><td>{$date[$i]}</td><td><a href=\"courses/destroy/$i\">Remove</a></td></tr>";
-		// }
   foreach ($id as $key => $value)
     {
       echo "<tr><td>{$id[$key]}</td><td>{$name[$key]}</td><td>{$description[$key]}</td><td>{$date[$key]}</td><td><a href=\"courses/destroy/$value\">Remove</a></td></tr>";

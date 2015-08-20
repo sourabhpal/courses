@@ -33,18 +33,24 @@ class Courses extends CI_Controller {
     }
     public function add()
     {
-        $this->load->model("Course");
         $name = $this->input->post('name');
         $description = $this->input->post('description');
-        $course_details = array(
-            "name" => $name,
-            "description" => $description
-        ); 
-        $add_course = $this->Course->add_course($course_details);
-        if($add_course === TRUE)
-        {
-            redirect('/');
+        if(strlen($name)<15){
+        	$this->session->set_userdata('error', 'Name must be at least 15 characters!');
+        	redirect('/');
         }
+        else{
+        	$this->load->model("Course");
+	        $course_details = array(
+	            "name" => $name,
+	            "description" => $description
+	        ); 
+	        $add_course = $this->Course->add_course($course_details);
+	        if($add_course === TRUE)
+	        {
+	            redirect('/');
+	        }	
+        }   
     }
     public function remove($id)
     {
@@ -63,5 +69,4 @@ class Courses extends CI_Controller {
     	$this->load->view('destroy', $course);
     }
 }
-
 ?>
