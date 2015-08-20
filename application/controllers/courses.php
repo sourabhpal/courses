@@ -46,7 +46,7 @@ class Courses extends CI_Controller {
             redirect('/');
         }
     }
-    public function destroy($id)
+    public function remove($id)
     {
     	$this->load->model("Course");
     	$delete_course = $this->Course->delete_course_by_id($id);
@@ -54,6 +54,13 @@ class Courses extends CI_Controller {
         {
             redirect('/');
         }
+    }
+    public function destroy($id)
+    {
+    	$this->load->model('Course');
+    	$course = $this->Course->get_course_by_id($id);
+    	// var_dump($course);
+    	$this->load->view('destroy', $course);
     }
 }
 
