@@ -4,7 +4,25 @@ class Courses extends CI_Controller {
 	{
 		$this->load->model("Course");
 		$courses = array("courses" => $this->Course->get_all_courses());
-		$this->load->view('index', $courses);
+		$id = array();
+		$name = array();
+		$description = array();
+		$date = array();
+		foreach($courses as $rkey => $rvalue){
+			foreach($rvalue as $v){
+				array_push($id, $v['id']);
+				array_push($name, $v['name']);
+				array_push($description, $v['description']);
+				array_push($date, $v['created_at']);
+			}
+		}
+		$c = array(
+			"id" => $id,
+			"name" => $name,
+			"description" => $description,
+			"date" => $date
+			);
+		$this->load->view('index', $c);
 	}
     public function show($id)
     {   

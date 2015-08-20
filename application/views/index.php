@@ -56,16 +56,14 @@
 				<td>Date Added</td>
 				<td>Actions</td>
 			</thead>
+			<tbody>
 	<?php 
-		// var_dump($courses);
-		foreach($courses as $c){
-			echo "<tr>";
-			foreach($c as $a){
-				echo "<td>" . $a . "</td>";
-			}
-			echo "<td><a href=\"courses/remove/$a\">Remove</a></td></tr>";
+		for ($i = 0; $i < count($id); $i++)
+		{
+			echo "<tr><td>{$id[$i]}</td><td>{$name[$i]}</td><td>{$description[$i]}</td><td>{$date[$i]}</td><td><a href=\"courses/remove/$i\">Remove</a></td></tr>";
 		}
 	?>
+			</tbody>
 		</table>
 	</div>
 </body>
